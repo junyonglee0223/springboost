@@ -1,0 +1,53 @@
+#server:
+#  port: 8081
+#
+## database 연동 설정
+#
+#spring:
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    #    각자 PC에 만들어놓은 Database이름을 써야 합니다.
+#    #jdbc-url: jdbc:mysql://localhost:3306/db_mydb?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+#    url: "jdbc:mysql://localhost:3306/db_mydb?serverTimezone=Asia/Seoul"
+#
+#    #    mysql에 생성한 사용자 계정 정보를 써야 합니다.
+#
+#    username: user_mydb
+#    password: 0000
+#  thymeleaf:
+#    cache: false
+#
+#  # spring data jpa 설정
+#  jpa:
+#    database: mysql
+#    database-platform: org.hibernate.dialect.MySQLDialect
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: update
+#    properties:
+#      hibernate:
+#        format_sql: true
+#
+
+server:
+  port: 8081
+
+# database 연동 설정
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #    각자 PC에 만들어놓은 Database이름을 써야 합니다.
+    url: jdbc:mysql://localhost:3306/db_mydb
+    #?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    #    mysql에 생성한 사용자 계정 정보를 써야 합니다.
+    username: root
+    password: dlwnsdyd12!
+  thymeleaf:
+    cache: false
+
+  # spring data jpa 설정
+  jpa:
+    hibernate:
+      ddl-auto: update  # 애플리케이션 실행 시점에 테이블을 drop하고 다시 생성한다.
+    open-in-view: false   #true로 변경해보기
+    show-sql: true
