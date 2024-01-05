@@ -5,10 +5,7 @@ import com.jundragon.member.dto.BoardDTO;
 import com.jundragon.member.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
@@ -32,12 +29,35 @@ public class BoardController {
         return "redirect:/board/";
     }
 
-    @GetMapping("/blist")
+    @GetMapping("/")
     public String findAll(Model model){
         List<BoardDTO> boardTOList = boardService.findAll();
         model.addAttribute("boardList", boardTOList);
         return "blist";
+    }
 
+    @GetMapping("/{id}")
+    public String findById(@PathVariable Long id, Model model){
+
+        boardService.updateHits(id);
+        BoardDTO boardDTO = boardService.findById(id);
+        model.addAttribute("board", boardDTO);
+        return "bdetail";
+    }
+
+    @GetMapping("/bupdate/{id}")
+    public String updateForm(@PathVariable Long id, Model model){
+        BoardDTO boardDTO = boardService.findById(id);
+        model.addAttribute("boardUpdate", boardDTO);
+        return "bupdate";
+    }
+
+    @PostMapping("/bupdate")
+    public String update(@ModelAttribute BoardDTO boardDTO, Model model){
+        BoardDTO board = boardService.update(boardDTO);
+        model.addAttribute("board", board);
+        return "bdetail";
+//        return "redirect:/board/" + boardDTO.getId();
     }
 
 

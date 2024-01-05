@@ -100,7 +100,7 @@ public class MemberController {
         return checkResult;
     }
 
-    @GetMapping("/board/")
+    @GetMapping("/board/goBoard")
     public String goBoard(){
         return "board";
     }
