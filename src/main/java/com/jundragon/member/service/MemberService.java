@@ -82,5 +82,13 @@ public class MemberService {
     }
 
 
-
+    public String emailCheck(String memberEmail) {
+        Optional<MemberEntity>byMemberEmail = memberRepository.findByMemberEmail(memberEmail);
+        if(byMemberEmail.isPresent()){
+            return null;
+        }
+        else{
+            return "ok";
+        }
+    }
 }
